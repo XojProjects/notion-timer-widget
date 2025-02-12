@@ -11,15 +11,21 @@ function App() {
   useEffect(() => {
     let intervalId;
     if (isRunning) {
+      const startTime = Date.now();
+      
       intervalId = setInterval(() => {
         if (mode === 'stopwatch') {
-          setMilliseconds(prev => {
-            if (prev === 99) {
-              setTime(prevTime => prevTime + 1);
-              return 0;
+          const elapsedTime = Date.now() - startTime;
+          const newSeconds = Math.floor(elapsedTime / 1000);
+          const newMilliseconds = Math.floor((elapsedTime % 1000) / 10);
+          
+          setTime(prevTime => {
+            if (newSeconds > prevTime) {
+              return newSeconds;
             }
-            return prev + 1;
+            return prevTime;
           });
+          setMilliseconds(newMilliseconds);
         } else {
           setMilliseconds(prev => {
             if (prev === 0) {
@@ -35,29 +41,10 @@ function App() {
             return prev - 1;
           });
         }
-      }, 10); // 10ms interval for smoother milliseconds
+      }, 10);
     }
     return () => clearInterval(intervalId);
   }, [isRunning, mode]);
-
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        // Sayfa görünmez olduğunda (kullanıcı başka sekmeye geçtiğinde veya pencereyi kapattığında)
-        setIsRunning(false);
-        setTime(0);
-        setMilliseconds(0);
-      }
-    };
-
-    // Event listener'ı ekle
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    // Cleanup function
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, []); // Sadece component mount olduğunda çalışır
 
   const formatTime = (timeInSeconds, ms) => {
     const minutes = Math.floor(timeInSeconds / 60);
