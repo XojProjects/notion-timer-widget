@@ -11,7 +11,11 @@ function App() {
   useEffect(() => {
     let intervalId;
     if (isRunning) {
-      const startTime = Date.now();
+      const startTime = parseInt(localStorage.getItem('startTime')) || Date.now();
+      
+      if (!localStorage.getItem('startTime')) {
+        localStorage.setItem('startTime', startTime.toString());
+      }
       
       intervalId = setInterval(() => {
         if (mode === 'stopwatch') {
@@ -53,11 +57,15 @@ function App() {
   };
 
   const handleStart = () => setIsRunning(true);
-  const handlePause = () => setIsRunning(false);
+  const handlePause = () => {
+    setIsRunning(false);
+    localStorage.removeItem('startTime');
+  };
   const handleReset = () => {
     setIsRunning(false);
     setTime(mode === 'timer' && inputMinutes ? parseInt(inputMinutes) * 60 : 0);
     setMilliseconds(0);
+    localStorage.removeItem('startTime');
   };
 
   const handleModeToggle = () => {
