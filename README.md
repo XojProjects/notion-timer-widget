@@ -61,7 +61,7 @@ This project is open-source and available under the **MIT License**.
 
 ## 📬 Contact
 - **Developer:** Osman Bayram  
-- **Email:**   
+- **Email:**  osbayram1@gmail.com
 - **GitHub:** [OsmanByrm](https://github.com/OsmanByrm)
 
 ---
