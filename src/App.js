@@ -40,6 +40,25 @@ function App() {
     return () => clearInterval(intervalId);
   }, [isRunning, mode]);
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Sayfa görünmez olduğunda (kullanıcı başka sekmeye geçtiğinde veya pencereyi kapattığında)
+        setIsRunning(false);
+        setTime(0);
+        setMilliseconds(0);
+      }
+    };
+
+    // Event listener'ı ekle
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Cleanup function
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []); // Sadece component mount olduğunda çalışır
+
   const formatTime = (timeInSeconds, ms) => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
