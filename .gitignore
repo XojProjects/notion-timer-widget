@@ -1,23 +1,21 @@
-# Node.js bağımlılıkları
+# Node.js dependencies
 node_modules/
-npm-debug.log
-yarn-error.log
 
-# React build dosyaları
+# Build output
+dist/
 build/
+
+# Logs
+logs/
 *.log
 
-# Çevresel değişkenler (API Key vb.)
+# Environment variables
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
-# IDE / Editör dosyaları
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
 .vscode/
 .idea/
-.DS_Store
-
-# Git cache temizliği
-*.cache
