@@ -12,8 +12,12 @@ This is a **minimalist Timer & Stopwatch widget** built with **React** and **Tai
 - 🛠 **Optimized for Notion Embed**.
 
 ## 🖼 Screenshots
-![Timer Mode]
-![Stopwatch Mode]
+
+ <img width="425" alt="image" src="https://github.com/user-attachments/assets/23f18e07-a479-4ebd-8393-5a7b71497aae" />
+  
+
+ <img width="508" alt="image" src="https://github.com/user-attachments/assets/511546f0-6679-4598-9212-54e5a326e550" />
+
 
 ## 🛠 Tech Stack
 - **Frontend**: React, Tailwind CSS
