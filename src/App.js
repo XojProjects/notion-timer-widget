@@ -86,7 +86,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0a0c14] font-mono text-[#c084fc]">
+    <div className="min-h-screen flex items-center justify-center bg-transparent font-mono text-[#c084fc]">
       <div className="w-[360px] rounded-xl border border-[#6d28d9]/40 bg-[#11101a]/90 p-5 shadow-[0_0_30px_rgba(109,40,217,0.4)]">
         
         <div className="flex justify-between items-center mb-4">
@@ -112,7 +112,7 @@ export default function App() {
           />
         )}
 
-        <div className="text-[3.2rem] text-center my-6 tracking-[0.3em] text-[#a78bfa] drop-shadow-[0_0_8px_rgba(167,139,250,0.6)]">
+        <div className="text-[3.1rem] text-center my-6 tracking-[0.25em] text-[#9b7df5] drop-shadow-[0_0_4px_rgba(155,125,245,0.35)]">
           {formatTime(time, milliseconds)}
         </div>
 
