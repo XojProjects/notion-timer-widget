@@ -86,7 +86,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-transparent font-mono text-[#c084fc]">
+    <div className="min-h-screen flex items-center justify-start bg-transparent font-mono text-[#c084fc] px-2">
         <div className="w-full max-w-[700px] p-2">
         
         <div className="flex justify-between items-center mb-4">
