@@ -87,7 +87,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-transparent font-mono text-[#c084fc]">
-      <div className="w-[360px] rounded-xl border border-[#6d28d9]/40 bg-[#11101a]/90 p-5 shadow-[0_0_30px_rgba(109,40,217,0.4)]">
+        <div className="w-full max-w-[700px] p-2">
         
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl tracking-widest text-purple-400">
