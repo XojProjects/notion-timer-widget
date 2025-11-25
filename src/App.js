@@ -4,7 +4,6 @@ import './App.css';
 export default function App() {
   const [mode, setMode] = useState('stopwatch');
   const [time, setTime] = useState(0);
-  const [milliseconds, setMilliseconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [inputMinutes, setInputMinutes] = useState('');
 
@@ -22,37 +21,28 @@ export default function App() {
         if (mode === 'stopwatch') {
           const elapsedTime = Date.now() - startTime;
           const newSeconds = Math.floor(elapsedTime / 1000);
-          const newMilliseconds = Math.floor((elapsedTime % 1000) / 10);
-
           setTime(newSeconds);
-          setMilliseconds(newMilliseconds);
         } else {
-          setMilliseconds(prev => {
-            if (prev === 0) {
-              setTime(prevTime => {
-                if (prevTime <= 0) {
-                  setIsRunning(false);
-                  return 0;
-                }
-                return prevTime - 1;
-              });
-              return 99;
+          setTime(prevTime => {
+            if (prevTime <= 0) {
+              setIsRunning(false);
+              return 0;
             }
-            return prev - 1;
+            return prevTime - 1;
           });
         }
-      }, 10);
+      }, 1000);
     }
 
     return () => clearInterval(intervalId);
   }, [isRunning, mode]);
 
-  const formatTime = (sec, ms) => {
+  const formatTime = (sec) => {
     const minutes = Math.floor(sec / 60);
     const seconds = sec % 60;
     return `${minutes.toString().padStart(2, '0')}:${seconds
       .toString()
-      .padStart(2, '0')}.${ms.toString().padStart(2, '0')}`;
+      .padStart(2, '0')}`;
   };
 
   const handleStart = () => setIsRunning(true);
@@ -65,14 +55,12 @@ export default function App() {
   const handleReset = () => {
     setIsRunning(false);
     setTime(mode === 'timer' && inputMinutes ? parseInt(inputMinutes) * 60 : 0);
-    setMilliseconds(0);
     localStorage.removeItem('startTime');
   };
 
   const handleModeToggle = () => {
     setIsRunning(false);
     setTime(0);
-    setMilliseconds(0);
     setMode(prev => (prev === 'stopwatch' ? 'timer' : 'stopwatch'));
   };
 
@@ -81,24 +69,23 @@ export default function App() {
     setInputMinutes(value);
     if (value && !isRunning) {
       setTime(parseInt(value) * 60);
-      setMilliseconds(0);
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-start bg-transparent font-mono text-[#c084fc] px-2">
-        <div className="w-full max-w-[700px] p-2">
+      <div className="w-full max-w-[700px] p-2">
         
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl tracking-widest text-purple-400">
-            {mode === 'stopwatch' ? 'STOPWATCH' : 'TIMER'}
+            {mode === 'stopwatch' ? 'FLOW STATE' : 'TIME MODULE'}
           </h2>
 
           <button
             onClick={handleModeToggle}
             className="px-3 py-1 rounded-full text-xs tracking-wider bg-purple-600/20 border border-purple-500 text-purple-300 hover:bg-purple-600/40"
           >
-            {mode === 'stopwatch' ? 'TIMER MODE' : 'STOPWATCH MODE'}
+            {mode === 'stopwatch' ? 'TIMER MODE' : 'FLOW MODE'}
           </button>
         </div>
 
@@ -113,33 +100,33 @@ export default function App() {
         )}
 
         <div className="text-[3.1rem] text-center my-6 tracking-[0.25em] text-[#9b7df5] drop-shadow-[0_0_4px_rgba(155,125,245,0.35)]">
-          {formatTime(time, milliseconds)}
+          {formatTime(time)}
         </div>
 
-  <div className="flex gap-3">
-  {!isRunning ? (
-    <button
-      onClick={handleStart}
-      className="flex-1 border border-[#8b5cf6]/40 text-[#e9d5ff] py-2 rounded-lg hover:bg-[#8b5cf6]/15 shadow-[0_0_10px_rgba(139,92,246,0.45)]"
-    >
-      START
-    </button>
-  ) : (
-    <button
-      onClick={handlePause}
-      className="flex-1 border border-[#a855f7]/40 text-[#f5d0fe] py-2 rounded-lg hover:bg-[#a855f7]/15 shadow-[0_0_10px_rgba(168,85,247,0.45)]"
-    >
-      PAUSE
-    </button>
-  )}
+        <div className="flex gap-3">
+          {!isRunning ? (
+            <button
+              onClick={handleStart}
+              className="flex-1 border border-[#8b5cf6]/40 text-[#e9d5ff] py-2 rounded-lg hover:bg-[#8b5cf6]/15 shadow-[0_0_10px_rgba(139,92,246,0.45)]"
+            >
+              START
+            </button>
+          ) : (
+            <button
+              onClick={handlePause}
+              className="flex-1 border border-[#a855f7]/40 text-[#f5d0fe] py-2 rounded-lg hover:bg-[#a855f7]/15 shadow-[0_0_10px_rgba(168,85,247,0.45)]"
+            >
+              PAUSE
+            </button>
+          )}
 
-  <button
-    onClick={handleReset}
-    className="flex-1 border border-[#9333ea]/40 text-[#d8b4fe] py-2 rounded-lg hover:bg-[#9333ea]/15 shadow-[0_0_10px_rgba(147,51,234,0.4)]"
-  >
-    RESET
-  </button>
-</div>
+          <button
+            onClick={handleReset}
+            className="flex-1 border border-[#9333ea]/40 text-[#d8b4fe] py-2 rounded-lg hover:bg-[#9333ea]/15 shadow-[0_0_10px_rgba(147,51,234,0.4)]"
+          >
+            RESET
+          </button>
+        </div>
 
       </div>
     </div>
