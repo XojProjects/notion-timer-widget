@@ -86,8 +86,8 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#050816] via-[#130f40] to-[#36096d] font-mono text-cyan-200">
-      <div className="w-[420px] rounded-2xl border border-purple-500/70 bg-black/70 backdrop-blur-md p-6 shadow-[0_0_40px_rgba(168,85,247,0.9)]">
+    <div className="min-h-screen flex items-center justify-center bg-[#0a0c14] font-mono text-[#c084fc]">
+      <div className="w-[360px] rounded-xl border border-[#6d28d9]/40 bg-[#11101a]/90 p-5 shadow-[0_0_30px_rgba(109,40,217,0.4)]">
         
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl tracking-widest text-purple-400">
@@ -112,34 +112,35 @@ export default function App() {
           />
         )}
 
-        <div className="text-[3.5rem] text-center my-6 tracking-widest text-cyan-300 drop-shadow-[0_0_12px_rgba(34,211,238,0.9)]">
+        <div className="text-[3.2rem] text-center my-6 tracking-[0.3em] text-[#a78bfa] drop-shadow-[0_0_8px_rgba(167,139,250,0.6)]">
           {formatTime(time, milliseconds)}
         </div>
 
-        <div className="flex gap-3">
-          {!isRunning ? (
-            <button
-              onClick={handleStart}
-              className="flex-1 border border-cyan-400 text-cyan-300 py-2 rounded-xl hover:bg-cyan-500/10 shadow-[0_0_15px_rgba(34,211,238,0.6)]"
-            >
-              START
-            </button>
-          ) : (
-            <button
-              onClick={handlePause}
-              className="flex-1 border border-yellow-400 text-yellow-300 py-2 rounded-xl hover:bg-yellow-500/10 shadow-[0_0_15px_rgba(234,179,8,0.6)]"
-            >
-              PAUSE
-            </button>
-          )}
+  <div className="flex gap-3">
+  {!isRunning ? (
+    <button
+      onClick={handleStart}
+      className="flex-1 border border-[#8b5cf6]/40 text-[#e9d5ff] py-2 rounded-lg hover:bg-[#8b5cf6]/15 shadow-[0_0_10px_rgba(139,92,246,0.45)]"
+    >
+      START
+    </button>
+  ) : (
+    <button
+      onClick={handlePause}
+      className="flex-1 border border-[#a855f7]/40 text-[#f5d0fe] py-2 rounded-lg hover:bg-[#a855f7]/15 shadow-[0_0_10px_rgba(168,85,247,0.45)]"
+    >
+      PAUSE
+    </button>
+  )}
 
-          <button
-            onClick={handleReset}
-            className="flex-1 border border-pink-500 text-pink-400 py-2 rounded-xl hover:bg-pink-600/10 shadow-[0_0_15px_rgba(236,72,153,0.6)]"
-          >
-            RESET
-          </button>
-        </div>
+  <button
+    onClick={handleReset}
+    className="flex-1 border border-[#9333ea]/40 text-[#d8b4fe] py-2 rounded-lg hover:bg-[#9333ea]/15 shadow-[0_0_10px_rgba(147,51,234,0.4)]"
+  >
+    RESET
+  </button>
+</div>
+
       </div>
     </div>
   );
